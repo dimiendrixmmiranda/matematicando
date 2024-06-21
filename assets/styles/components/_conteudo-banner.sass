@@ -1,0 +1,31 @@
+@import '../abstract/_variaveis'
+.conteudo-banner
+    max-width: 95%
+    margin: 0 auto
+    font-family: $fonte-secundaria
+    margin-top: 5em
+    min-height: 100vh
+    div
+        &:nth-child(2)
+            line-height: 1.05
+            font-size: 1.15em
+            text-align: center
+            color: $branco
+            text-shadow: 1px 1px 2px $preto
+            margin-top: 1em
+        &:nth-child(3)
+            height: 120px
+            position: relative
+            margin-top: 2.5em
+            a
+                position: absolute
+                top: 0
+                left: 50%
+                transform: translate(-50%)
+                text-decoration: none
+                color: $branco
+                font-size: 4em
+                text-align: center
+                animation: $animarAncora
+                text-shadow: 1px 1px 2px $preto
+                scroll-behavior: smooth

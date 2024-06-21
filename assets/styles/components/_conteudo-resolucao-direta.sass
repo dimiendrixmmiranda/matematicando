@@ -1,0 +1,158 @@
+@import '../abstract/_variaveis'
+.conteudo-resolucao-direta
+    width: 95%
+    margin: 0 auto
+    font-family: $fonte-primaria
+    line-height: 1.1
+    background-color: $cinza-claro
+    padding: .5em
+    border-radius: 6px
+    position: relative
+    .mover
+        opacity: .5
+        border-radius: 6px
+        transition: .6s ease
+        cursor: pointer
+        &:hover
+            opacity: 1
+    .mover-direita
+        position: absolute
+        top: 24.8%
+        right: 2.5%
+        width: 25px
+        height: 25px
+    .mover-esquerda
+        position: absolute
+        top: 24.8%
+        left: 2.5%
+        width: 25px
+        height: 25px
+    ul
+        white-space: nowrap
+        width: 100%
+        overflow-x: scroll
+        overflow-y: hidden
+        padding-bottom: .5em
+        margin-top: 1em
+        position: relative
+        &::-webkit-scrollbar
+            height: 6px
+        &::-webkit-scrollbar-track
+            background: $azul-escuro
+        &::-webkit-scrollbar-thumb
+            background-color: $salmao
+            box-shadow: inset 0px 0px 2px $preto
+        li
+            display: inline
+            button
+                font-size: 1em
+                font-weight: bold
+                padding: .2em .4em
+                border-radius: 4px
+                background-color: $salmao
+                color: $branco
+                cursor: pointer
+    .conteudo-resolucao-direta-resultado
+        width: 100%
+        height: 400px
+        background-color: $cinza-escuro
+        margin: 1em 0
+        border-radius: 6px
+        overflow-x: hidden
+        overflow-y: scroll
+        padding: 1em
+        display: flex
+        flex-direction: column
+        row-gap: 1em
+        &::-webkit-scrollbar
+            width: 4px
+        &::-webkit-scrollbar-track
+            background: $azul-escuro
+        &::-webkit-scrollbar-thumb
+            background-color: $salmao
+            box-shadow: inset 0px 0px 2px $preto
+        .conteudo-resolucao-direta-resultado-item
+            padding-bottom: .5em
+            border-bottom: solid 1px $preto
+        .conteudo-resolucao-direta-resultado-mensagem
+            font-size: 3em
+            width: 100%
+            height: 400px
+            text-align: center
+            display: flex
+            justify-content: center
+            align-items: center
+            color: $cinza-claro
+            text-shadow: 1px 1px 2px $preto
+            opacity: .6
+    .conteudo-resolucao-direta-formulario
+        margin-top: 1em
+        .conteudo-resolucao-direta-formulario-form
+            background-color: $azul-escuro
+            padding: .5em
+            display: grid
+            grid-template-columns: 1fr 25%
+            grid-row: auto auto
+            row-gap: .3em
+            column-gap: .5em
+            border-radius: 6px
+            color: $branco
+            position: relative
+            .form-label
+                grid-column: 1/3
+                grid-row: 1/2
+                font-size: .85em
+            .form-input
+                grid-row: 2/3
+                grid-column: 1/2
+                height: 25px
+                padding: 0 .2em
+            .form-btn-informacoes
+                position: absolute
+                right: 30%
+                top: 50%
+                background: transparent
+                cursor: pointer
+                border: none
+                font-size: 1.2em
+                &::before
+                    content: attr(data-content)
+                    padding: .5em
+                    position: absolute
+                    width: 170px
+                    height: 80px
+                    background-color: $cinza-escuro
+                    bottom: 130%
+                    left: -500%
+                    border-radius: 20px
+                    display: none
+                    color: $preto
+                    line-height: 1.05
+                    font-size: .8em
+                    justify-content: center
+                    box-shadow: 0 0 2px 1px $preto
+                    overflow: hidden
+                    overflow-y: scroll
+                &::after
+                    content: ''
+                    position: absolute
+                    width: 0
+                    height: 0
+                    top: -30%
+                    left: 10.5%
+                    border-left: 8px solid transparent
+                    border-right: 8px solid transparent
+                    border-top: 8px solid $cinza-escuro
+                    display: none
+                &:hover
+                    &::before, &::after
+                        display: flex
+            .form-btn
+                grid-row: 1/3
+                grid-column: 2/3
+                background-color: $vermelho
+                border-radius: 8px
+                font-weight: bold
+                font-size: .8em
+                padding: 0 .2em
+                color: $branco

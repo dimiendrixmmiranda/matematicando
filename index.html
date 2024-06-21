@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Matematicando</title>
+</head>
+
+<body>
+    <header class="cabecalho">
+        <a href="./index.html" class="cabecalho-logo">
+            <div>
+                <img src="./assets/imgs/logo.png" alt="Logo do site matematicando">
+            </div>
+            <div>
+                <h1>Matematicando</h1>
+            </div>
+        </a>
+        <button class="cabecalho-bars" id="btnBars">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <ul class="cabecalho-menu">
+            <li><a href="#"><i class="fa-solid fa-gear"></i> Ferramentas</a></li>
+            <li><a href="#"><i class="fa-solid fa-clipboard-list"></i> Exercícios</a></li>
+            <li><a href="#"><i class="fa-solid fa-gamepad"></i> Jogos</a></li>
+            <li><a href="#"><i class="fa-solid fa-brain"></i> Principais Matemáticos</a></li>
+        </ul>
+        <div class="cabecalho-alterar-tema">
+            <input type="checkbox" name="alterarTema" id="altararTema">
+        </div>
+    </header>
+    <main class="conteudo">
+        <div class="conteudo-banner">
+            <div>
+                <img src="./assets/imgs/banner.svg" alt="Imagem de um professor ensinando a matéria">
+            </div>
+            <div>
+                <h2>
+                    Ensinando matemática na prática, de maneira simples e objetiva, sem lero lero!
+                </h2>
+            </div>
+            <div>
+                <a href="#resolucao"><i class="fa-solid fa-angles-down"></i></a>
+            </div>
+        </div>
+        <div class="conteudo-resolucao-direta" id="resolucao">
+            <h2>
+                Selecione um botão da categoria para resolver seu problema diretamente, sem explicações, apenas a
+                resposta.
+            </h2>
+            <ul>
+                <li><button data-operacao="operacaoComFracao">Operacao com Fração</button></li>
+                <li><button data-operacao="simplificarFracao">Simplificar Fração</button></li>
+                <li><button data-operacao="mmc">MMC</button></li>
+                <li><button data-operacao="jurosSimples">Juros Simples</button></li>
+                <li><button data-operacao="jurosCompostos">Juros Compostos</button></li>
+                <li><button data-operacao="desconto">Desconto</button></li>
+                <li><button data-operacao="equacaoPrimeiroGrau">Equação do primeiro grau</button></li>
+                <li><button data-operacao="equacaoSegundoGrau">Equação do segundo grau</button></li>
+                <li><button data-operacao="pitagoras">Pitágoras</button></li>
+                <li><button data-operacao="areaQuadrado">Área de um quadrado</button></li>
+                <li><button data-operacao="areaRetangulo">Área de um retangulo</button></li>
+                <li><button data-operacao="areaTriangulo">Área de um triângulo</button></li>
+                <li><button data-operacao="areaLosango">Área de um losango</button></li>
+                <li><button data-operacao="areaCirculo">Área de um círculo</button></li>
+            </ul>
+            <button class="mover-direita mover" id="movimentarScrollDireita"><i class="fa-solid fa-arrow-right"></i></button>
+            <button class="mover-esquerda mover" id="movimentarScrollEsquerda"><i class="fa-solid fa-arrow-left"></i></button>
+            <!-- Local onde vai ser gerado o input de acordo com o botão selecionado -->
+            <div class="conteudo-resolucao-direta-formulario" id="formularioDireto"></div>
+            
+            <div class="conteudo-resolucao-direta-resultado" id="resultadoDireto">
+                <p class="conteudo-resolucao-direta-resultado-mensagem">Área de resolução</p>
+            </div>
+        </div>
+        <div class="conteudo-resolucao-explicacao">
+            <h2 class="conteudo-resolucao-explicacao-titulo">
+                <strong>Entenda de uma vez por todas!</strong> Selecione um assunto e entenda da maneira mais fácil,
+                rápida e pratica possivel
+            </h2>
+            <ul class="conteudo-resolucao-explicacao-lista">
+                <li><a href="#">Simplificar Fração</a></li>
+                <li><a href="#">MMC</a></li>
+                <li><a href="#">Juros Simples</a></li>
+                <li><a href="#">Juros Compostos</a></li>
+                <li><a href="#">Juros Compostos</a></li>
+                <li><a href="#">Desconto</a></li>
+                <li><a href="#">Equação do primeiro grau</a></li>
+                <li><a href="#">Equação do segundo grau</a></li>
+                <li><a href="#">Pitágoras</a></li>
+                <li><a href="#">Área de um quadrado</a></li>
+                <li><a href="#">Área de um retangulo</a></li>
+                <li><a href="#">Área de um triângulo</a></li>
+                <li><a href="#">Área de um losango</a></li>
+                <li><a href="#">Área de um círculo</a></li>
+            </ul>
+        </div>
+    </main>
+    <footer class="rodape">
+        <p>Projeto idealizado e desenvolvido por <strong>Dimi Endrix Martins Miranda</strong>, usando HTML5, CSS3(SASS)e JavaScript puro. Tem como foco ensinar matemática de maneira simples e direta, da maneira mais objetiva possível. <strong>Projeto sem fins lucrativos!</strong></p>
+    </footer>
+
+    <div class="offcanvas" id="offcanvas">
+        <h2 class="offcanvas-titulo">Menu</h2>
+        <button class="offcanvas-botao-fechar" id="fecharOffcanvas"><i class="fa-solid fa-bars-staggered"></i></button>
+        <ul class="offcanvas-menu">
+            <li><a href="#"><i class="fa-solid fa-gear"></i> Ferramentas</a></li>
+            <li><a href="#"><i class="fa-solid fa-clipboard-list"></i> Exercícios</a></li>
+            <li><a href="#"><i class="fa-solid fa-gamepad"></i> Jogos</a></li>
+            <li><a href="#"><i class="fa-solid fa-brain"></i> Principais Matemáticos</a></li>
+        </ul>
+        <div class="offcanvas-alterar-tema">
+            <input type="checkbox" name="alterarTema" id="altararTema">
+        </div>
+        <a href="https://wa.me/5543988252886?text=Informe%20um%20bug%20no%20projeto%20matematicando!" class="offcanvas-bug">
+            Relate um bug! <i class="fa-solid fa-bug"></i>
+        </a>
+    </div>
+    <script src="./script/offcanvas.js"></script>
+    <script src="./script/movimentarScroll.js"></script>
+    <script type="module" src="./script/indentificarBotao.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+@import '../abstract/_variaveis'
+@media screen and ( min-width: 375px )
+    .conteudo-resolucao-direta
+        .mover
+            top: 21.5%
+
+@media screen and ( min-width: 425px )
+    .cabecalho
+        .cabecalho-logo
+            div
+                &:first-child
+                    img
+                        width: 100%
+                        max-width: 50px
+        h1
+            font-size: 2.4em
+        .cabecalho-bars
+            width: 50px
+            height: 50px
+            align-self: center
+    .conteudo
+        .conteudo-banner
+            div
+                &:nth-child(1)
+                    max-width: 450px
+                    margin: 0 auto
+                    img
+                        width: 100%
+                &:nth-child(2)
+                    max-width: 600px
+                    margin: 0 auto
+                    font-size: 2em
+        .conteudo-resolucao-direta
+            max-width: 600px
+            .mover
+                top: 18%
+        .conteudo-resolucao-explicacao
+            max-width: 600px
+            .conteudo-resolucao-explicacao-lista
+                column-gap: 1em
+                li
+                    margin: 0
+    .rodape
+        font-size: 1.2em
+@media screen and ( min-width: 768px )
+    .cabecalho
+        grid-template-columns: auto 1fr
+        .cabecalho-logo
+            grid-template-columns: 12% 1fr
+            div
+                &:first-child
+                    img
+                        width: 100%
+                        max-width: 50px
+        .cabecalho-bars
+            display: none
+        .cabecalho-menu
+            display: flex
+    .conteudo
+        .conteudo-banner
+            display: grid
+            grid-template-columns: repeat(2, 50%)
+            max-width: 90%
+            div
+                &:nth-child(1)
+                    align-self: center
+                    width: 100%
+                &:nth-child(2)
+                    font-size: 1.4em
+                    align-self: center
+                &:nth-child(3)
+                    grid-column: 1/3
+                    margin-top: 1em
+        .conteudo-resolucao-direta
+            max-width: 800px
+            .mover
+                top: 14%
+            .conteudo-resolucao-direta-formulario
+                .conteudo-resolucao-direta-formulario-form
+                    .form-label
+                        font-size: 1.3em
+                    .form-input
+                        height: 28px
+                    .form-btn-informacoes
+                        top: 55%
+                        left: 70%
+                    .form-btn
+                        font-size: 1.4em
+        .conteudo-resolucao-explicacao
+            max-width: 800px
+            overflow: hidden
+            .conteudo-resolucao-explicacao-lista
+                column-gap: 0em
+                li
+                    margin-right: .5em
+    .rodape
+        font-size: 1.2em
+@media screen and ( min-width: 1024px )
+    .cabecalho
+        grid-template-columns: auto auto 80px
+        .cabecalho-logo
+            grid-template-columns: 12% 1fr
+            h1
+                font-size: 2.6em
+        .cabecalho-menu
+            font-size: 1.1em
+            max-width: 500px
+            margin-left: auto
+        .cabecalho-alterar-tema
+            display: block
+    .conteudo
+        display: grid
+        grid-template-columns: repeat(2, 50%)
+        .conteudo-banner
+            display: grid
+            grid-template-columns: repeat(2, 50%)
+            max-width: 90%
+            grid-column: 1/3
+            div
+                &:nth-child(1)
+                    align-self: center
+                    width: 100%
+                &:nth-child(2)
+                    font-size: 2em
+                    align-self: center
+                &:nth-child(3)
+                    grid-column: 1/3
+                    margin-top: 1em
+        .conteudo-resolucao-direta
+            max-width: 450px
+            margin: 0
+            align-self: center
+            justify-self: center
+            .mover
+                top: 17.8%
+            .conteudo-resolucao-direta-formulario
+                .conteudo-resolucao-direta-formulario-form
+                    .form-label
+                        font-size: 1.3em
+                    .form-input
+                        height: 28px
+                    .form-btn-informacoes
+                        top: 56%
+                        left: 67%
+                    .form-btn
+                        font-size: 1em
+        .conteudo-resolucao-explicacao
+            max-width: 450px
+            margin: 0
+            overflow: hidden
+            align-self: center
+            justify-self: center
+            .conteudo-resolucao-explicacao-titulo
+                font-size: 2em
+            .conteudo-resolucao-explicacao-lista
+                column-gap: 0em
+                li
+                    margin-right: .5em
+    .rodape
+        font-size: 1.2em
+@media screen and ( min-width: 1440px )
+    .cabecalho
+        .cabecalho-logo
+            grid-template-columns: 15% 1fr
+            h1
+                font-size: 2.6em
+        .cabecalho-menu
+            font-size: 1.4em
+            max-width: 800px
+    .conteudo
+        display: grid
+        grid-template-columns: repeat(2, 50%)
+        .conteudo-banner
+            display: grid
+            grid-template-columns: repeat(2, 50%)
+            width: 90%
+            grid-column: 1/3
+            div
+                &:nth-child(1)
+                    align-self: center
+                    width: 100%
+                    max-width: 550px
+                &:nth-child(2)
+                    font-size: 2.2em
+                    align-self: center
+                &:nth-child(3)
+                    grid-column: 1/3
+                    margin-top: 1em
+        .conteudo-resolucao-direta
+            max-width: 650px
+            margin: 0
+            align-self: center
+            justify-self: center
+            padding: 1em
+            .mover
+                top: 15%
+            .conteudo-resolucao-direta-formulario
+                .conteudo-resolucao-direta-formulario-form
+                    .form-label
+                        font-size: 1.3em
+                    .form-input
+                        height: 28px
+                    .form-btn-informacoes
+                        top: 56%
+                        left: 69.4%
+                    .form-btn
+                        font-size: 1em
+        .conteudo-resolucao-explicacao
+            max-width: 650px
+            margin: 0
+            overflow: hidden
+            align-self: center
+            justify-self: center
+            .conteudo-resolucao-explicacao-titulo
+                font-size: 1.8em
+    .rodape
+        font-size: 1.2em
