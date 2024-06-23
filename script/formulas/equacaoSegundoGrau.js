@@ -47,8 +47,8 @@ export function calcularEquacaoSegundoGrau(expressaoString) {
     // x2
     const x2Linha1 = `x2 = -(${objetoFatores.b}) - √${delta} / 2*${objetoFatores.a}`
     const x2Linha2 = `x2 = ${bFormatado} - ${Math.sqrt(delta)} / ${2 * objetoFatores.a}`
-    const x2Linha3 = `x3 = ${bFormatado - Math.sqrt(delta)} / ${2 * objetoFatores.a}`
-    const x2Linha4 = `x4 = ${(bFormatado - Math.sqrt(delta)) / (2 * objetoFatores.a)}`
+    const x2Linha3 = `x2 = ${bFormatado - Math.sqrt(delta)} / ${2 * objetoFatores.a}`
+    const x2Linha4 = `x2 = ${(bFormatado - Math.sqrt(delta)) / (2 * objetoFatores.a)}`
 
     array.push(formulaX)
     array.push(x1Linha1)

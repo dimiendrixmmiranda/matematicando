@@ -366,8 +366,10 @@ body::-webkit-scrollbar-thumb {
   box-shadow: inset 0px 0px 2px #000;
 }
 .conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .conteudo-resolucao-direta-resultado-item {
-  padding-bottom: 0.5em;
   border-bottom: solid 1px #000;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .conteudo-resolucao-direta-resultado-item .conteudo-resolucao-direta-resultado-item-p {
+  padding: 0.5em 0;
 }
 .conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .conteudo-resolucao-direta-resultado-mensagem {
   font-size: 3em;

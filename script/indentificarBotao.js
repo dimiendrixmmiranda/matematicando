@@ -5,6 +5,8 @@ import { calcularAreaLosango } from "./formulas/areaLosango.js"
 import { calcularAreaQuadrado } from "./formulas/areaQuadrado.js"
 import { calcularAreaRetangulo } from "./formulas/areaRetangulo.js"
 import { calcularAreaTriangulo } from "./formulas/areaTriangulo.js"
+import { calcularjurosSimples } from "./formulas/calcularJurosSimples.js"
+import { calcularDesconto } from "./formulas/desconto.js"
 import { calcularEquacaoSegundoGrau } from "./formulas/equacaoSegundoGrau.js"
 
 const listaBotoesResolucaoDireta = document.querySelectorAll('#resolucao ul li')
@@ -54,7 +56,13 @@ function realizarOperacao(tipoOperacao) {
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
-                console.log('hoje')
+                const expressaoString = e.target.querySelector('.form-input').value
+                const objetoResultado = calcularjurosSimples(expressaoString)
+                const elementoResultado = criarResultadoMensagem(objetoResultado)
+                if (document.querySelector('.conteudo-resolucao-direta-resultado-mensagem')) {
+                    document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
+                }
+                elementoResultadoDireto.appendChild(elementoResultado)
             })
             break
         case 'jurosCompostos':
@@ -67,16 +75,23 @@ function realizarOperacao(tipoOperacao) {
             })
             break
         case 'desconto':
-            formulario = gerarFormulario('Informe o valor total e o desconto:', 'Informe o valor total e o desconto a ser aplicado, separado por "-". Utilize como exemplo 450-50%', '\\d+-\\d+%-\\d+-(\+|-)')
+            formulario = gerarFormulario('Informe o valor total e o desconto:', 'Informe o valor total e o desconto a ser aplicado, separado por "-". Utilize como exemplo 450-50%', '(\\d+)-(\\d+)%')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
-                console.log('hoje')
+                const expressaoString = e.target.querySelector('.form-input').value
+                const objetoResultado = calcularDesconto(expressaoString)
+                console.log(objetoResultado)
+                const elementoResultado = criarResultadoMensagem(objetoResultado)
+                if (document.querySelector('.conteudo-resolucao-direta-resultado-mensagem')) {
+                    document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
+                }
+                elementoResultadoDireto.appendChild(elementoResultado)
             })
             break
         case 'equacaoPrimeiroGrau':
-            formulario = gerarFormulario('Informe a equação de primeiro grau:', 'Informe a equação de primeiro grau. Utilize como exemplo "2x + 3 = 7 - 2x" (até 4 valores)', '(-|\\+)?(\\d+)(x)?(-|\\+)?(\\d+)(x)?=(-|\\+)?(\\d+)(x)?(-|\\+)?(\\d+)(x)?')
+            formulario = gerarFormulario('Informe a equação de primeiro grau:', 'Informe a equação de primeiro grau. Utilize como exemplo "2x + 3 = 7 - 2x" (até 4 valores)', '(-|\\+)?(\\d+)(x)?(-|\\+)?(\\d+)(x)?=(\\d+)(x)?(-|\\+)?(\\d+)?(x)?')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
@@ -93,11 +108,11 @@ function realizarOperacao(tipoOperacao) {
                 const expressaoString = e.target.querySelector('.form-input').value
                 const objetoResultado = calcularEquacaoSegundoGrau(expressaoString)
                 console.log(objetoResultado)
-                // const elementoResultado = criarResultadoMensagem(objetoResultado)
-                // if (document.querySelector('.conteudo-resolucao-direta-resultado-mensagem')) {
-                //     document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
-                // }
-                // elementoResultadoDireto.appendChild(elementoResultado)
+                const elementoResultado = criarResultadoMensagem(objetoResultado)
+                if (document.querySelector('.conteudo-resolucao-direta-resultado-mensagem')) {
+                    document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
+                }
+                elementoResultadoDireto.appendChild(elementoResultado)
             })
             break
         case 'pitagoras':
