@@ -52,6 +52,9 @@
                 background-color: $salmao
                 color: $branco
                 cursor: pointer
+            .active
+                background-color: $vermelho
+                transition: .6s ease
     .conteudo-resolucao-direta-resultado
         width: 100%
         height: 400px
@@ -86,6 +89,45 @@
             color: $cinza-claro
             text-shadow: 1px 1px 2px $preto
             opacity: .6
+        .container-mmc
+            display: grid
+            max-width: fit-content
+            position: relative
+            margin: 0 auto
+            .resultado-mmc
+                margin-left: auto
+                width: 25px
+                height: 25px
+                text-align: center
+                &::before
+                    content: ''
+                    width: 100%
+                    height: 1px
+                    background-color: $preto
+                    position: absolute
+                    top: 83%
+                    left: 0
+                &::after
+                    content: ''
+                    width: 1px
+                    height: 25px
+                    background-color: $preto
+                    position: absolute
+                    top: 80%
+                    right: 25px
+                    
+            div
+                display: flex
+                &:last-child
+                    border-bottom: solid 1px $preto
+                p
+                    width: 25px
+                    height: 25px
+                    border-right: solid 1px $preto
+                    text-align: center
+                .divisor
+                    border-right: none
+
     .conteudo-resolucao-direta-formulario
         margin-top: 1em
         .conteudo-resolucao-direta-formulario-form

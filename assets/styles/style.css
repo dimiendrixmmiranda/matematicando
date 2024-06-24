@@ -342,6 +342,10 @@ body::-webkit-scrollbar-thumb {
   color: #fff;
   cursor: pointer;
 }
+.conteudo-resolucao-direta ul li .active {
+  background-color: #C40C0C;
+  transition: 0.6s ease;
+}
 .conteudo-resolucao-direta .conteudo-resolucao-direta-resultado {
   width: 100%;
   height: 400px;
@@ -382,6 +386,52 @@ body::-webkit-scrollbar-thumb {
   color: #ebebeb;
   text-shadow: 1px 1px 2px #000;
   opacity: 0.6;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .container-mmc {
+  display: grid;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  position: relative;
+  margin: 0 auto;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .container-mmc .resultado-mmc {
+  margin-left: auto;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .container-mmc .resultado-mmc::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  position: absolute;
+  top: 83%;
+  left: 0;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .container-mmc .resultado-mmc::after {
+  content: "";
+  width: 1px;
+  height: 25px;
+  background-color: #000;
+  position: absolute;
+  top: 80%;
+  right: 25px;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .container-mmc div {
+  display: flex;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .container-mmc div:last-child {
+  border-bottom: solid 1px #000;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .container-mmc div p {
+  width: 25px;
+  height: 25px;
+  border-right: solid 1px #000;
+  text-align: center;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .container-mmc div .divisor {
+  border-right: none;
 }
 .conteudo-resolucao-direta .conteudo-resolucao-direta-formulario {
   margin-top: 1em;
@@ -456,7 +506,7 @@ body::-webkit-scrollbar-thumb {
 .conteudo-resolucao-direta .conteudo-resolucao-direta-formulario .conteudo-resolucao-direta-formulario-form .form-btn {
   grid-row: 1/3;
   grid-column: 2/3;
-  background-color: #CD1818;
+  background-color: #C40C0C;
   border-radius: 8px;
   font-weight: bold;
   font-size: 0.8em;

@@ -1,3 +1,4 @@
+import { criarContainerMMC } from "./ferramentas-criacao/criarContainerMMC.js"
 import { criarResultadoMensagem } from "./ferramentas-criacao/criarRespostaResultado.js"
 import { gerarFormulario } from "./ferramentas-criacao/gerarFormularioDaFerramenta.js"
 import { calcularAreaCirculo } from "./formulas/areaCirculo.js"
@@ -5,18 +6,23 @@ import { calcularAreaLosango } from "./formulas/areaLosango.js"
 import { calcularAreaQuadrado } from "./formulas/areaQuadrado.js"
 import { calcularAreaRetangulo } from "./formulas/areaRetangulo.js"
 import { calcularAreaTriangulo } from "./formulas/areaTriangulo.js"
+import { calcularJurosCompostos } from "./formulas/calcularJurosCompostos.js"
 import { calcularjurosSimples } from "./formulas/calcularJurosSimples.js"
 import { calcularDesconto } from "./formulas/desconto.js"
 import { calcularEquacaoSegundoGrau } from "./formulas/equacaoSegundoGrau.js"
+import { mmc } from "./formulas/mmc.js"
 
 const listaBotoesResolucaoDireta = document.querySelectorAll('#resolucao ul li')
 const elementoFormularioDireto = document.querySelector('#formularioDireto')
 const elementoResultadoDireto = document.querySelector('#resultadoDireto')
+const listaBtns = document.querySelectorAll('[data-operacao]')
 
 listaBotoesResolucaoDireta.forEach(li => {
     const botao = li.children[0]
     botao.addEventListener('click', (e) => {
         e.preventDefault()
+        listaBtns.forEach(btn => btn.classList.remove('active'))
+        botao.classList.add('active')
         realizarOperacao(botao.dataset.operacao)
     })
 })
@@ -30,6 +36,7 @@ function realizarOperacao(tipoOperacao) {
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break;
         case 'simplificarFracao':
@@ -39,15 +46,23 @@ function realizarOperacao(tipoOperacao) {
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
                 console.log('hoje')
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'mmc':
-            formulario = gerarFormulario('Informe a lista de numeros:', 'Informe uma lista de 2 a 3 numeros que deseja tirar o MMC. Utilize como separador "-" ou ","', '(\\d+)(\,|-)(\\d+)(\,|-)?(\\d+)?')
+            formulario = gerarFormulario('Informe a lista de numeros:', 'Informe uma lista de 2 a 3 numeros que deseja tirar o MMC. Use como separador "-". Utilize como exemplo: 10-12-15', '(\\d+)(\,|-)(\\d+)(\,|-)?(\\d+)?')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
-                console.log('hoje')
+                const expressaoString = e.target.querySelector('.form-input').value
+                const objetoResultado = mmc(expressaoString)
+                const elementoResultado = criarContainerMMC(objetoResultado)
+                if (document.querySelector('.conteudo-resolucao-direta-resultado-mensagem')) {
+                    document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
+                }
+                elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'jurosSimples':
@@ -63,15 +78,24 @@ function realizarOperacao(tipoOperacao) {
                     document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
                 }
                 elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'jurosCompostos':
-            formulario = gerarFormulario('Informe o capital, a taxa e o tempo', 'Informe o capital inicial, a taxa ao mês, o tempo investido e + para valorização e - para desvalorização, separado por "-". Utilize como exemplo: 900-5%-4-+', '\\d+-\\d+%-\\d+-(\+|-)')
+            formulario = gerarFormulario('Informe o capital, a taxa e o tempo', 'Informe o capital inicial, a taxa ao mês, o tempo investido e + para valorização e - para desvalorização, separado por "-". Utilize como exemplo: 900-5%-4-+', '(\\d+)-(\\d+)%-(\\d+)(\\+|-)')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
-                console.log('hoje')
+                const expressaoString = e.target.querySelector('.form-input').value
+                console.log(expressaoString)
+                const objetoResultado = calcularJurosCompostos(expressaoString)
+                const elementoResultado = criarResultadoMensagem(objetoResultado)
+                if (document.querySelector('.conteudo-resolucao-direta-resultado-mensagem')) {
+                    document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
+                }
+                elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'desconto':
@@ -88,6 +112,7 @@ function realizarOperacao(tipoOperacao) {
                     document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
                 }
                 elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'equacaoPrimeiroGrau':
@@ -97,6 +122,7 @@ function realizarOperacao(tipoOperacao) {
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
                 console.log('hoje')
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'equacaoSegundoGrau':
@@ -113,6 +139,7 @@ function realizarOperacao(tipoOperacao) {
                     document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
                 }
                 elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'pitagoras':
@@ -122,6 +149,7 @@ function realizarOperacao(tipoOperacao) {
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
                 console.log('hoje')
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'areaQuadrado':
@@ -137,6 +165,7 @@ function realizarOperacao(tipoOperacao) {
                     document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
                 }
                 elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'areaRetangulo':
@@ -152,6 +181,7 @@ function realizarOperacao(tipoOperacao) {
                     document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
                 }
                 elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'areaTriangulo':
@@ -167,6 +197,7 @@ function realizarOperacao(tipoOperacao) {
                     document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
                 }
                 elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'areaLosango':
@@ -182,6 +213,7 @@ function realizarOperacao(tipoOperacao) {
                     document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
                 }
                 elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'areaCirculo':
@@ -197,6 +229,7 @@ function realizarOperacao(tipoOperacao) {
                     document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
                 }
                 elementoResultadoDireto.appendChild(elementoResultado)
+                limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         default:
@@ -205,3 +238,8 @@ function realizarOperacao(tipoOperacao) {
 }
 
 const limparElemento = elemento => elemento.innerHTML = ''
+
+const limparFocarInput = input => {
+    input.value = ''
+    input.focus()
+}
