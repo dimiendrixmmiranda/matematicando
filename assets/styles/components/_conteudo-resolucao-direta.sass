@@ -99,6 +99,7 @@
                 width: 25px
                 height: 25px
                 text-align: center
+                padding-top: .1em
                 &::before
                     content: ''
                     width: 100%
@@ -115,7 +116,7 @@
                     position: absolute
                     top: 80%
                     right: 25px
-                    
+
             div
                 display: flex
                 &:last-child
@@ -127,7 +128,28 @@
                     text-align: center
                 .divisor
                     border-right: none
-
+        .container-fracao
+            display: flex
+            column-gap: .5em
+            border-bottom: solid 1px $preto
+            padding-bottom: .5em
+            .sinal
+                width: 10px
+                display: flex
+                justify-content: center
+                align-items: center
+            .container-fracao-item
+                p
+                    width: 25px
+                    height: 25px
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                span
+                    width: 100%
+                    height: 1px
+                    background-color: $preto
+                    display: block
     .conteudo-resolucao-direta-formulario
         margin-top: 1em
         .conteudo-resolucao-direta-formulario-form
@@ -162,11 +184,10 @@
                     content: attr(data-content)
                     padding: .5em
                     position: absolute
-                    width: 170px
-                    height: 80px
                     background-color: $cinza-escuro
+                    width: 200px
                     bottom: 130%
-                    left: -500%
+                    left: -600%
                     border-radius: 20px
                     display: none
                     color: $preto
@@ -175,7 +196,6 @@
                     justify-content: center
                     box-shadow: 0 0 2px 1px $preto
                     overflow: hidden
-                    overflow-y: scroll
                 &::after
                     content: ''
                     position: absolute

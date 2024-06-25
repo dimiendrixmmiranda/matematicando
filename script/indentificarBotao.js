@@ -1,6 +1,7 @@
-import { criarContainerMMC } from "./ferramentas-criacao/criarContainerMMC.js"
-import { criarResultadoMensagem } from "./ferramentas-criacao/criarRespostaResultado.js"
-import { gerarFormulario } from "./ferramentas-criacao/gerarFormularioDaFerramenta.js"
+import { criarContainerFracao } from "./ferramentasCriacao/criarContainerFracao.js"
+import { criarContainerMMC } from "./ferramentasCriacao/criarContainerMMC.js"
+import { criarResultadoMensagem } from "./ferramentasCriacao/criarRespostaResultado.js"
+import { gerarFormulario } from "./ferramentasCriacao/gerarFormularioDaFerramenta.js"
 import { calcularAreaCirculo } from "./formulas/areaCirculo.js"
 import { calcularAreaLosango } from "./formulas/areaLosango.js"
 import { calcularAreaQuadrado } from "./formulas/areaQuadrado.js"
@@ -11,6 +12,8 @@ import { calcularjurosSimples } from "./formulas/calcularJurosSimples.js"
 import { calcularDesconto } from "./formulas/desconto.js"
 import { calcularEquacaoSegundoGrau } from "./formulas/equacaoSegundoGrau.js"
 import { mmc } from "./formulas/mmc.js"
+import { calcularPitagoras } from "./formulas/pitagoras.js"
+import { simplificarFracao } from "./formulas/simplificarFracao.js"
 
 const listaBotoesResolucaoDireta = document.querySelectorAll('#resolucao ul li')
 const elementoFormularioDireto = document.querySelector('#formularioDireto')
@@ -46,11 +49,19 @@ function realizarOperacao(tipoOperacao) {
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
                 console.log('hoje')
+                const expressaoString = e.target.querySelector('.form-input').value
+                const objetoResultado = simplificarFracao(expressaoString)
+                const elementoResultado = criarContainerFracao(objetoResultado)
+                if (document.querySelector('.conteudo-resolucao-direta-resultado-mensagem')) {
+                    document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
+                }
+                elementoResultadoDireto.appendChild(elementoResultado)
+                elementoResultado.children[elementoResultado.children.length - 1].remove()
                 limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
         case 'mmc':
-            formulario = gerarFormulario('Informe a lista de numeros:', 'Informe uma lista de 2 a 3 numeros que deseja tirar o MMC. Use como separador "-". Utilize como exemplo: 10-12-15', '(\\d+)(\,|-)(\\d+)(\,|-)?(\\d+)?')
+            formulario = gerarFormulario('Informe a lista de numeros:', 'Informe uma lista de 2 a 3 numeros que deseja tirar o MMC. Use como separador "-". Utilize como exemplo: 10-12 ou 10-12-15', '(\\d+)(\,|-)(\\d+)(\,|-)?(\\d+)?')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
@@ -116,7 +127,7 @@ function realizarOperacao(tipoOperacao) {
             })
             break
         case 'equacaoPrimeiroGrau':
-            formulario = gerarFormulario('Informe a equação de primeiro grau:', 'Informe a equação de primeiro grau. Utilize como exemplo "2x + 3 = 7 - 2x" (até 4 valores)', '(-|\\+)?(\\d+)(x)?(-|\\+)?(\\d+)(x)?=(\\d+)(x)?(-|\\+)?(\\d+)?(x)?')
+            formulario = gerarFormulario('Informe a equação de primeiro grau:', 'Informe a equação de primeiro grau. Utilize como exemplo "2x + 3 = 7 - 2x" (até 4 valores)', '(-|\\+)?((\\d+)|(\\d+x))?(-|\\+)?((\\d+)|(\\d+x))?=(-|\\+)?((\\d+)|(\\d+x))?(-|\\+)?((\\d+)|(\\d+x))?')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
@@ -126,7 +137,7 @@ function realizarOperacao(tipoOperacao) {
             })
             break
         case 'equacaoSegundoGrau':
-            formulario = gerarFormulario('Informe a equação de segundo grau:', 'Informe a equação de segundo grau. Utilize como exemplo "-2x2 + 4x + 8 = 0"', '(-|\\+)?(\\d+(x|X)2)(-|\\+)(\\d+x)(-|\\+)(\\d+)=(\\d+)')
+            formulario = gerarFormulario('Informe a equação de segundo grau:', 'Informe a equação de segundo grau. Utilize como exemplo "-2x2+4x+8=0"', '(-|\\+)?(\\d+(x|X)2)(-|\\+)(\\d+x)(-|\\+)(\\d+)=(\\d+)')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
@@ -143,12 +154,18 @@ function realizarOperacao(tipoOperacao) {
             })
             break
         case 'pitagoras':
-            formulario = gerarFormulario('Informe a equação:', 'Informe a equação que será resolvida utilizando o teorema de Pitágoras. Utilize como exemplo "h2 = 4-2 + 16-2"', '([a-zA-Z0-9]+-2)=([a-zA-Z0-9]+-2)\\+([a-zA-Z0-9]+-2)')
+            formulario = gerarFormulario('Informe a equação:', 'Informe a equação que será resolvida utilizando o teorema de Pitágoras. Utilize como exemplo "h2=4-2+16-2"', '(\\w+)-2=(\\w+)-2\\+(\\w+)-2')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
-                console.log('hoje')
+                const expressaoString = e.target.querySelector('.form-input').value
+                const objetoResultado = calcularPitagoras(expressaoString)
+                const elementoResultado = criarResultadoMensagem(objetoResultado)
+                if (document.querySelector('.conteudo-resolucao-direta-resultado-mensagem')) {
+                    document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
+                }
+                elementoResultadoDireto.appendChild(elementoResultado)
                 limparFocarInput(e.target.querySelector('.form-input'))
             })
             break
@@ -217,7 +234,7 @@ function realizarOperacao(tipoOperacao) {
             })
             break
         case 'areaCirculo':
-            formulario = gerarFormulario('Informe o raio do círculo:', 'Informe o raio do círculo. PI padrão utilizado é 3.14151. Utilize como exemplo: "8"', '(\\d+)(\\.||,)?(\\d+)?')
+            formulario = gerarFormulario('Informe o raio do círculo:', 'Informe o raio do círculo. PI padrão utilizado é 3.1415. Utilize como exemplo: "8"', '(\\d+)(\\.||,)?(\\d+)?')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
