@@ -1,5 +1,6 @@
 import { criarContainerFracao } from "./ferramentasCriacao/criarContainerFracao.js"
 import { criarContainerMMC } from "./ferramentasCriacao/criarContainerMMC.js"
+import { criarElemento } from "./ferramentasCriacao/criarElemento.js"
 import { criarResultadoMensagem } from "./ferramentasCriacao/criarRespostaResultado.js"
 import { gerarFormulario } from "./ferramentasCriacao/gerarFormularioDaFerramenta.js"
 import { calcularAreaCirculo } from "./formulas/areaCirculo.js"
@@ -12,6 +13,7 @@ import { calcularjurosSimples } from "./formulas/calcularJurosSimples.js"
 import { calcularDesconto } from "./formulas/desconto.js"
 import { calcularEquacaoSegundoGrau } from "./formulas/equacaoSegundoGrau.js"
 import { mmc } from "./formulas/mmc.js"
+import { operacaoComFracao } from "./formulas/operacaoComFracao.js"
 import { calcularPitagoras } from "./formulas/pitagoras.js"
 import { simplificarFracao } from "./formulas/simplificarFracao.js"
 
@@ -34,11 +36,46 @@ function realizarOperacao(tipoOperacao) {
     let formulario
     switch (tipoOperacao) {
         case 'operacaoComFracao':
-            formulario = gerarFormulario('Informe a operação com fração:', 'Coloque no formulário a expressão fracionária que deseja resolver. Utilize como exemplo: 5/8+8/9', '(\\d+\/\\d+)(\+|-|\*|\/)(\\d+\/\\d+)')
+            formulario = gerarFormulario('Informe a operação com fração:', 'Coloque no formulário a expressão fracionária que deseja resolver. Utilize como exemplo: 5/8+8/9', '(\\d+)\\/(\\d+)(\\+|-|\\*|\\/)(\\d+)\\/(\\d+)')
             limparElemento(elementoFormularioDireto)
             elementoFormularioDireto.appendChild(formulario)
             formulario.addEventListener('submit', (e) => {
                 e.preventDefault()
+                const expressaoString = e.target.querySelector('.form-input').value
+                const objetoResultado = operacaoComFracao(expressaoString)
+                console.log(objetoResultado)
+                const elementoResultado = criarElemento('div', 'operacao-fracao-container-item')
+                
+                objetoResultado.montagemDaConta.split(' ').forEach(elemento => {
+                    if (elemento.length <= 1) {
+                        const sinal = criarElemento('p', 'sinal', elemento)
+                        elementoResultado.appendChild(sinal)
+                    } else {
+                        const elementoFracao = criarElemento('div', 'container-fracao-item')
+                        const pNumerador = criarElemento('p', 'numerador', elemento.split('/')[0])
+                        const spanBarra = criarElemento('span', 'barra')
+                        const pDenominador = criarElemento('p', 'numerador', elemento.split('/')[1])
+                        elementoFracao.appendChild(pNumerador)
+                        elementoFracao.appendChild(spanBarra)
+                        elementoFracao.appendChild(pDenominador)
+                        elementoResultado.appendChild(elementoFracao)
+                    }
+                })
+
+                if (document.querySelector('.conteudo-resolucao-direta-resultado-mensagem')) {
+                    document.querySelector('.conteudo-resolucao-direta-resultado-mensagem').remove()
+                }
+                const divContainer = criarElemento('div', 'operacao-fracao-container')
+                const titulo1 = criarElemento('h4', '', 'O resultado da sua operação fracionária é:')
+                const titulo2 = criarElemento('h4', '', 'Simplificando o resultado temos:')
+                const containerSimplificaoFracao = criarContainerFracao(objetoResultado.arrayDeSimplificacao)
+                divContainer.appendChild(titulo1)
+                divContainer.appendChild(elementoResultado)
+                divContainer.appendChild(titulo2)
+                divContainer.appendChild(containerSimplificaoFracao)
+                
+                containerSimplificaoFracao.children[containerSimplificaoFracao.children.length - 1].remove()
+                elementoResultadoDireto.appendChild(divContainer)
                 limparFocarInput(e.target.querySelector('.form-input'))
             })
             break;

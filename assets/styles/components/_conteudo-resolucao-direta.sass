@@ -67,6 +67,7 @@
         display: flex
         flex-direction: column
         row-gap: 1em
+        position: relative
         &::-webkit-scrollbar
             width: 4px
         &::-webkit-scrollbar-track
@@ -74,6 +75,40 @@
         &::-webkit-scrollbar-thumb
             background-color: $salmao
             box-shadow: inset 0px 0px 2px $preto
+        .conteudo-resolucao-direta-resultado-limpar
+            position: absolute
+            top: 10px
+            right: 10px
+            background: transparent
+            border: none
+            font-size: 1.4em
+            color: $vermelho
+            text-shadow: 1px 1px 2px $branco
+            cursor: pointer
+            z-index: 3
+            &:hover
+                &::before
+                    content: 'Clique aqui para limpar o histórico de operações'
+                    font-size: .5em
+                    position: absolute
+                    width: 100px
+                    left: -470%
+                    background-color: $azul-escuro
+                    padding: .2em 0
+                    border-radius: 6px
+                    text-shadow: none
+                    color: $branco
+                &::after   
+                    content: ''
+                    position: absolute
+                    width: 0
+                    height: 0
+                    top: 40%
+                    left: -40%
+                    border-left: 6px solid transparent
+                    border-right: 6px solid transparent
+                    border-top: 6px solid $azul-escuro
+                    rotate: -90deg
         .conteudo-resolucao-direta-resultado-item
             border-bottom: solid 1px $preto
             .conteudo-resolucao-direta-resultado-item-p
@@ -150,6 +185,30 @@
                     height: 1px
                     background-color: $preto
                     display: block
+        .operacao-fracao-container
+            display: flex
+            flex-direction: column
+            .operacao-fracao-container-item
+                display: flex
+                margin-bottom: .8em
+                .sinal
+                    width: 20px
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                .container-fracao-item
+                    display: flex
+                    flex-direction: column
+                    .numerador
+                        width: 25px
+                        height: 25px
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                    .barra
+                        height: 1px
+                        width: 100%
+                        background-color: $preto
     .conteudo-resolucao-direta-formulario
         margin-top: 1em
         .conteudo-resolucao-direta-formulario-form

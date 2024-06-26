@@ -1,5 +1,3 @@
-import { criarContainerFracao } from "../ferramentasCriacao/criarContainerFracao.js"
-
 export function simplificarFracao(fracao) {
     const numerador = parseInt(fracao.split('/')[0])
     const denominador = parseInt(fracao.split('/')[1])

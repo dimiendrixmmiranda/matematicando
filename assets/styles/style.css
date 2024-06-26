@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&display=swap");
@@ -358,6 +359,7 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   row-gap: 1em;
+  position: relative;
 }
 .conteudo-resolucao-direta .conteudo-resolucao-direta-resultado::-webkit-scrollbar {
   width: 4px;
@@ -368,6 +370,42 @@ body::-webkit-scrollbar-thumb {
 .conteudo-resolucao-direta .conteudo-resolucao-direta-resultado::-webkit-scrollbar-thumb {
   background-color: #F05454;
   box-shadow: inset 0px 0px 2px #000;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .conteudo-resolucao-direta-resultado-limpar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.4em;
+  color: #C40C0C;
+  text-shadow: 1px 1px 2px #fff;
+  cursor: pointer;
+  z-index: 3;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .conteudo-resolucao-direta-resultado-limpar:hover::before {
+  content: "Clique aqui para limpar o histórico de operações";
+  font-size: 0.5em;
+  position: absolute;
+  width: 100px;
+  left: -470%;
+  background-color: #30475E;
+  padding: 0.2em 0;
+  border-radius: 6px;
+  text-shadow: none;
+  color: #fff;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .conteudo-resolucao-direta-resultado-limpar:hover::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 40%;
+  left: -40%;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #30475E;
+  rotate: -90deg;
 }
 .conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .conteudo-resolucao-direta-resultado-item {
   border-bottom: solid 1px #000;
@@ -459,6 +497,36 @@ body::-webkit-scrollbar-thumb {
   height: 1px;
   background-color: #000;
   display: block;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .operacao-fracao-container {
+  display: flex;
+  flex-direction: column;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .operacao-fracao-container .operacao-fracao-container-item {
+  display: flex;
+  margin-bottom: 0.8em;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .operacao-fracao-container .operacao-fracao-container-item .sinal {
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .operacao-fracao-container .operacao-fracao-container-item .container-fracao-item {
+  display: flex;
+  flex-direction: column;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .operacao-fracao-container .operacao-fracao-container-item .container-fracao-item .numerador {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.conteudo-resolucao-direta .conteudo-resolucao-direta-resultado .operacao-fracao-container .operacao-fracao-container-item .container-fracao-item .barra {
+  height: 1px;
+  width: 100%;
+  background-color: #000;
 }
 .conteudo-resolucao-direta .conteudo-resolucao-direta-formulario {
   margin-top: 1em;
